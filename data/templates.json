@@ -1,0 +1,56 @@
+[
+  {
+    "id": "blank",
+    "name": "Blank HTML",
+    "description": "Minimal semantic HTML shell with no styles or scripts.",
+    "path": "templates/blank.html"
+  },
+  {
+    "id": "basic",
+    "name": "Basic HTML5",
+    "description": "Clean HTML5 starter with core tags, styles, and script hooks.",
+    "path": "templates/basic.html"
+  },
+  {
+    "id": "responsive",
+    "name": "Responsive Starter",
+    "description": "Fluid layout scaffold with container and section styles.",
+    "path": "templates/responsive.html"
+  },
+  {
+    "id": "flexbox",
+    "name": "Flex Workspace",
+    "description": "Two-column flex layout with utility classes.",
+    "path": "templates/flexbox.html"
+  },
+  {
+    "id": "grid",
+    "name": "Grid Layout",
+    "description": "CSS grid shell for dashboards and galleries.",
+    "path": "templates/grid.html"
+  },
+  {
+    "id": "landing",
+    "name": "Launch Page",
+    "description": "Hero, highlights, and CTA for product launches.",
+    "path": "templates/landing.html"
+  },
+  {
+    "id": "form",
+    "name": "Form Suite",
+    "description": "Accessible form styling with grouped inputs.",
+    "path": "templates/form.html"
+  },
+  {
+    "id": "dashboard",
+    "name": "Product Dashboard",
+    "description": "Stats header, cards, and table scaffold.",
+    "path": "templates/dashboard.html"
+  },
+  {
+    "id": "portfolio",
+    "name": "Portfolio Grid",
+    "description": "Project grid with badges and call-to-action.",
+    "path": "templates/portfolio.html"
+  }
+]

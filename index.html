@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight-forge">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SSLAX HTML</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <script src="vendor/monaco/vs/loader.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-starfield"></div>
+    <div class="loading-planet">
+      <div class="planet-core"></div>
+      <div class="planet-ring"></div>
+      <div class="planet-halo"></div>
+      <div class="loading-glow"></div>
+      <div class="loading-particles"></div>
+    </div>
+    <div class="loading-text">SSLAX HTML</div>
+    <div class="loading-subtext">by <a class="creator-link" href="https://github.com/leonxger" target="_blank" rel="noreferrer">leonxger</a></div>
+  </div>
+
+  <div class="app" id="app">
+    <div class="toolbar" id="toolbar">
+      <div class="toolbar-left">
+        <span class="wordmark">SSLAX HTML</span>
+        <a class="creator-link" href="https://github.com/leonxger" target="_blank" rel="noreferrer">by leonxger</a>
+        <div class="toolbar-divider"></div>
+        <div class="layout-modes">
+          <button class="layout-btn layout-horizontal-btn mobile-hidden active" data-layout="horizontal" data-tooltip="Horizontal Split">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="12" y1="3" x2="12" y2="21" />
+            </svg>
+          </button>
+          <button class="layout-btn" data-layout="vertical" data-tooltip="Vertical Split">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+            </svg>
+          </button>
+          <button class="layout-btn" data-layout="editor" data-tooltip="Editor Only">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="8" y1="8" x2="16" y2="8" />
+              <line x1="8" y1="12" x2="14" y2="12" />
+              <line x1="8" y1="16" x2="12" y2="16" />
+            </svg>
+          </button>
+          <button class="layout-btn" data-layout="preview" data-tooltip="Preview Only">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+        <div class="toolbar-divider"></div>
+        <button class="icon-btn mobile-hidden" id="fullscreenBtn" data-tooltip="Toggle Fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 3 21 3 21 9" />
+            <polyline points="9 21 3 21 3 15" />
+            <line x1="21" y1="3" x2="14" y2="10" />
+            <line x1="3" y1="21" x2="10" y2="14" />
+          </svg>
+        </button>
+      </div>
+      <div class="toolbar-center">
+        <button class="sync-toggle" id="syncToggle" data-tooltip="Toggle Sync Mode">
+          <span class="sync-dot" id="syncDot"></span>
+          <span id="syncLabel">Realtime</span>
+        </button>
+      </div>
+      <div class="toolbar-right">
+        <button class="icon-btn essential" id="undoBtn" data-tooltip="Undo (Ctrl+Z)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 14H5l4-4" />
+            <path d="M5 14c0-4 3-7 7-7 3 0 5 2 5 5" />
+          </svg>
+        </button>
+        <button class="icon-btn essential" id="redoBtn" data-tooltip="Redo (Ctrl+Y)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 10h4l-4 4" />
+            <path d="M19 10c0 4-3 7-7 7-3 0-5-2-5-5" />
+          </svg>
+        </button>
+        <button class="icon-btn essential" id="saveBtn" data-tooltip="Save (Ctrl+S)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2z" />
+            <path d="M17 21v-8H7v8" />
+            <path d="M7 3v5h7" />
+          </svg>
+        </button>
+        <button class="icon-btn essential" id="downloadBtn" data-tooltip="Download HTML">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="searchBtn" data-tooltip="Find (Ctrl+F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="advancedSearchBtn" data-tooltip="Advanced Find (Ctrl+Shift+F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <line x1="12" y1="3" x2="12" y2="5.5" />
+            <line x1="12" y1="18.5" x2="12" y2="21" />
+            <line x1="3" y1="12" x2="5.5" y2="12" />
+            <line x1="18.5" y1="12" x2="21" y2="12" />
+            <circle cx="12" cy="12" r="3.25" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="formatBtn" data-tooltip="Format Code (Shift+Alt+F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7h16M4 12h10M4 17h6" />
+            <path d="M18 14l2 2-2 2M20 10l-2-2 2-2" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="selectAllBtn" data-tooltip="Select All (Ctrl+A)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 8h8v8H8z" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="templatesBtn" data-tooltip="Templates">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="resetCodeBtn" data-tooltip="Clear Editor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18" />
+            <path d="M19 6v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            <line x1="10" y1="11" x2="10" y2="17" />
+            <line x1="14" y1="11" x2="14" y2="17" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="copyBtn" data-tooltip="Copy to Clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+        </button>
+        <button class="icon-btn tooltip-left" id="fullTabBtn" data-tooltip="Open in New Tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" data-tooltip="Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+        <div class="toolbar-scroll-hint" id="toolbarScrollHint" aria-hidden="true">&gt;</div>
+      </div>
+    </div>
+    <div class="toolbar-mobile-row">
+      <div class="mobile-pane-toggle toolbar-mobile-pane-toggle" id="mobilePaneToggle" aria-label="Switch between editor and preview">
+        <button class="mobile-pane-btn active" data-pane="editor" type="button">Editor</button>
+        <button class="mobile-pane-btn" data-pane="preview" type="button">Preview</button>
+      </div>
+    </div>
+
+    <div class="workspace" id="workspace">
+      <div class="panel editor-panel panel-default-editor" id="editorPanel">
+        <div class="panel-header">
+          <span class="panel-label">Editor</span>
+          <div class="panel-info">
+            <span id="lineCount">0 lines</span>
+            <span id="cursorPos">Ln 1, Col 1</span>
+          </div>
+        </div>
+        <div class="search-bar" id="searchBar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="searchInput" placeholder="Find in code...">
+          <input type="text" id="replaceInput" placeholder="Replace with..." class="replace-input">
+          <span class="search-count" id="searchCount"></span>
+          <button class="search-action" id="replaceNextBtn" title="Replace current match">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 7h13a4 4 0 0 1 0 8H8" />
+              <polyline points="9 17 3 12 9 7" />
+            </svg>
+          </button>
+          <button class="search-action" id="replaceAllBtn" title="Replace all matches">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 7h5a4 4 0 0 1 0 8H3" />
+              <polyline points="7 17 3 12 7 7" />
+              <path d="M13 7h5a4 4 0 0 1 0 8h-5" />
+              <polyline points="17 17 13 12 17 7" />
+            </svg>
+          </button>
+          <button class="search-bar-close" id="searchClose">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="editor-container">
+          <div class="editor-wrapper">
+            <div class="editor-placeholder" id="editorPlaceholder"><!-- Start typing HTML or choose a template below --></div>
+            <div id="monacoEditor" class="monaco-editor-host"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-handle" id="dividerHandle">
+        <div class="divider-grip">
+          <div class="divider-dot"></div>
+          <div class="divider-dot"></div>
+          <div class="divider-dot"></div>
+        </div>
+      </div>
+
+      <div class="panel preview-panel panel-default-preview" id="previewPanel">
+        <div class="panel-header">
+          <span class="panel-label">Preview</span>
+          <div class="preview-controls">
+            <select class="viewport-select mobile-hidden" id="viewportSelect">
+              <option value="desktop">Desktop</option>
+              <option value="tablet">Tablet (768px)</option>
+              <option value="mobile">Mobile (375px)</option>
+            </select>
+            <button class="icon-btn" id="consoleToggleBtn" data-tooltip="Toggle Console">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+            </button>
+            <button class="icon-btn" id="refreshBtn" data-tooltip="Refresh Preview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="preview-container" id="previewContainer">
+          <div class="preview-empty" id="emptyPreview">
+            <div class="empty-preview-inner">
+              <div class="empty-title">Choose a Template</div>
+              <div class="empty-subtitle">Pick a starting point to load into the editor</div>
+              <div class="empty-templates" id="emptyTemplates"></div>
+            </div>
+          </div>
+          <div class="preview-refresh-line" id="previewRefreshLine"></div>
+          <div class="preview-frame-wrapper" id="previewFrameWrapper">
+            <iframe class="preview-iframe" id="previewIframe" sandbox="allow-scripts"></iframe>
+          </div>
+        </div>
+        <div class="console-drawer" id="consoleDrawer">
+          <div class="console-header" id="consoleHeader">
+            <span class="console-label">Console</span>
+            <span class="console-badge" id="consoleBadge">0</span>
+            <button class="console-clear-btn" id="consoleClearBtn" title="Clear console">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18" />
+                <path d="M19 6v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <line x1="10" y1="11" x2="10" y2="17" />
+                <line x1="14" y1="11" x2="14" y2="17" />
+              </svg>
+            </button>
+            <svg class="console-toggle-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="18 15 12 9 6 15" />
+            </svg>
+          </div>
+          <div class="console-content" id="consoleContent">
+            <div class="console-empty">No console output yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot online" id="connectionDot" title="Connection status"></div>
+        <span id="connectionStatus">Online</span>
+      </div>
+      <div class="status-item offline-indicator" id="offlineIndicator">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="1" y1="1" x2="23" y2="23" />
+          <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
+          <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
+          <path d="M10.71 5.05A16 16 0 0 1 22.58 9" />
+          <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+          <line x1="12" y1="20" x2="12.01" y2="20" />
+        </svg>
+        <span>Offline Mode</span>
+      </div>
+      <div class="validation-summary" id="validationSummary">
+        <div class="validation-count valid" id="validCount" title="Validated URLs OK">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+          <span>0</span>
+        </div>
+        <div class="validation-count invalid" id="invalidCount" title="Broken URLs">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+          <span>0</span>
+        </div>
+        <div class="validation-count pending" id="pendingCount" title="Pending validation">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+          <span>0</span>
+        </div>
+      </div>
+      <div class="status-item status-push-end">
+        <span id="lastSaved">Not saved</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Settings</span>
+        <button class="modal-close" id="settingsClose">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <div class="settings-section-title">Theme</div>
+          <div class="theme-grid" id="themeGrid"></div>
+          <div class="settings-desc mt-8">Themes align Monaco with the app UI and are saved locally.</div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Editor</div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Show Line Numbers</div>
+              <div class="settings-desc">Display line numbers in the editor gutter</div>
+            </div>
+            <div class="toggle-switch active" id="lineNumbersToggle" data-setting="lineNumbers"></div>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Show Minimap</div>
+              <div class="settings-desc">Toggle the code preview next to the scrollbar</div>
+            </div>
+            <div class="toggle-switch active" id="minimapToggle" data-setting="minimapEnabled"></div>
+          </div>
+          <div class="settings-row settings-slider-row" id="minimapWidthRow">
+            <div>
+              <div class="settings-label">Minimap Width</div>
+              <div class="settings-desc">Adjust how wide the preview bar renders</div>
+            </div>
+            <div class="slider-control">
+              <input type="range" min="80" max="240" step="5" id="minimapWidthSlider" />
+              <span class="slider-value" id="minimapWidthValue">100px</span>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Font Size</div>
+            </div>
+            <select class="select-input" id="fontSizeSelect" data-setting="fontSize">
+              <option value="12">12px</option>
+              <option value="14" selected>14px</option>
+              <option value="16">16px</option>
+              <option value="18">18px</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Tab Size</div>
+            </div>
+            <select class="select-input" id="tabSizeSelect" data-setting="tabSize">
+              <option value="2" selected>2 spaces</option>
+              <option value="4">4 spaces</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Preview</div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Sync Mode</div>
+              <div class="settings-desc">How preview updates with code changes</div>
+            </div>
+            <select class="select-input" id="syncModeSelect" data-setting="syncMode">
+              <option value="realtime" selected>Realtime</option>
+              <option value="paused">On Pause</option>
+              <option value="manual">Manual</option>
+            </select>
+          </div>
+          <div class="settings-row settings-slider-row" id="pauseDelayRow">
+            <div>
+              <div class="settings-label">On Pause Delay</div>
+              <div class="settings-desc">Time between edits and preview refresh when paused</div>
+            </div>
+            <div class="slider-control">
+              <input type="range" min="300" max="5000" step="100" id="pauseDelaySlider" />
+              <span class="slider-value" id="pauseDelayValue">1000ms</span>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Validation</div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Validate External Resources</div>
+              <div class="settings-desc">Check if external URLs are accessible</div>
+            </div>
+            <div class="toggle-switch active" id="validationToggle" data-setting="validation"></div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Keyboard Shortcuts</div>
+          <div class="settings-row settings-row-column">
+            <div class="shortcut-row"><span>Format Code</span><kbd class="shortcut-key">Shift+Alt+F</kbd></div>
+            <div class="shortcut-row"><span>Find</span><kbd class="shortcut-key">Ctrl+F</kbd></div>
+            <div class="shortcut-row"><span>Save</span><kbd class="shortcut-key">Ctrl+S</kbd></div>
+            <div class="shortcut-row"><span>Refresh Preview</span><kbd class="shortcut-key">Ctrl+Enter</kbd></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="settingsCancel">Cancel</button>
+        <button class="btn btn-secondary" id="settingsClearCache">Clear Cache</button>
+        <button class="btn btn-primary" id="settingsSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay templates-modal" id="templatesModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Choose a Template</span>
+        <button class="modal-close" id="templatesClose">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="templates-grid" id="templatesGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="clearModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Clear editor</span>
+        <button class="modal-close" id="clearCancelBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="muted-paragraph">Choose how you want to clear the editor.</p>
+        <div class="settings-row align-start">
+          <div>
+            <div class="settings-label">Clear current code only</div>
+            <div class="settings-desc">Editor empties, cached copy stays so you can reload it later.</div>
+          </div>
+          <button class="btn btn-secondary" id="clearCurrentBtn">Clear editor</button>
+        </div>
+        <div class="settings-row align-start">
+          <div>
+            <div class="settings-label">Clear editor and cache</div>
+            <div class="settings-desc">Remove stored code from this browser and empty the editor.</div>
+          </div>
+          <button class="btn btn-primary" id="clearCacheBtn">Clear editor & cache</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="clearCancelFooter">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay advanced-search-overlay" id="advancedSearchModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Advanced Search</span>
+        <div class="flex-inline">
+          <span class="advanced-hint-chip">Regex • Ranged • Drilldown</span>
+          <button class="modal-close" id="advancedSearchClose">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body advanced-search-body">
+        <div class="advanced-field">
+          <label for="advancedSearchInput">Search terms</label>
+          <input type="text" id="advancedSearchInput" placeholder="Comma or newline separated e.g. button, hero, footer">
+          <p class="advanced-hint">Use Ctrl/Cmd+Enter to run. Enable regex to treat the input as a pattern.</p>
+        </div>
+        <div class="advanced-row">
+          <div class="advanced-options">
+            <label class="checkbox">
+              <input type="checkbox" id="advancedRegexToggle">
+              <span>Use regex</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" id="advancedCaseToggle">
+              <span>Case sensitive</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" id="advancedWholeToggle" checked>
+              <span>Whole words</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" id="advancedSelectionToggle">
+              <span>Current selection only</span>
+            </label>
+          </div>
+          <div class="advanced-mode">
+            <label for="advancedMatchMode">Match logic</label>
+            <select id="advancedMatchMode" class="select-input">
+              <option value="all">All terms in window</option>
+              <option value="any">Any term in window</option>
+            </select>
+          </div>
+        </div>
+        <div class="advanced-range">
+          <div class="range-label">Window size</div>
+          <input type="range" min="10" max="1000" step="10" value="120" id="advancedRange">
+          <span class="range-value" id="advancedRangeValue">120 words window</span>
+        </div>
+        <div class="advanced-actions">
+          <div class="advanced-note">Find windows where all terms appear within the selected range, then drill into line-level highlights.</div>
+          <div class="advanced-action-buttons">
+            <button class="btn btn-secondary" id="advancedSearchReset">Reset</button>
+            <button class="btn btn-primary" id="advancedSearchRun">Search</button>
+          </div>
+        </div>
+        <div class="advanced-results" id="advancedResults">
+          <div class="advanced-empty">Run an advanced search to see grouped hits.</div>
+        </div>
+        <div class="advanced-detail" id="advancedResultDetail">
+          <div class="advanced-empty muted">Select a result to see line level highlights.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" data-type="success">
+    <svg class="toast-icon" id="toastIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+    <span class="toast-message" id="toastMessage">Success!</span>
+  </div>
+
+  <div class="keyboard-hint" id="keyboardHint">
+    <span><kbd>Ctrl</kbd>+<kbd>F</kbd> Find</span>
+    <span><kbd>Ctrl</kbd>+<kbd>S</kbd> Save</span>
+    <span><kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd> Format</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

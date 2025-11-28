@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Dashboard</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #060913;
+      --panel: #0c1222;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #22d3ee;
+      --accent-2: #8b5cf6;
+      --border: rgba(148, 163, 184, 0.16);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.12), transparent 26%),
+        radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.14), transparent 22%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 30px 18px 48px;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric-title {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 4px 0;
+    }
+
+    .metric-sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+    }
+
+    .chart {
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, rgba(34, 211, 238, 0.12), rgba(139, 92, 246, 0.12));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .chart::after {
+      content: 'Chart placeholder';
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(229, 231, 235, 0.7);
+      letter-spacing: 0.08em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .activity {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .activity li {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      display: grid;
+      gap: 4px;
+    }
+
+    .activity strong {
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 22px 14px 36px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <span>Pulseboard</span>
+        <span class="status">Live</span>
+      </div>
+      <span class="metric-sub">Week 27 snapshot</span>
+    </header>
+
+    <main>
+      <section class="metrics">
+        <article class="card">
+          <div class="metric-title">Net retention</div>
+          <div class="metric-value">123%</div>
+          <div class="metric-sub">+6 pts vs last month</div>
+        </article>
+        <article class="card">
+          <div class="metric-title">New customers</div>
+          <div class="metric-value">84</div>
+          <div class="metric-sub">43 enterprise, 41 self-serve</div>
+        </article>
+        <article class="card">
+          <div class="metric-title">Avg. response</div>
+          <div class="metric-value">1.8h</div>
+          <div class="metric-sub">Support response time</div>
+        </article>
+        <article class="card">
+          <div class="metric-title">Churn</div>
+          <div class="metric-value">2.1%</div>
+          <div class="metric-sub">30-day rolling</div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <div class="chart"></div>
+        <article class="card">
+          <h3>Activity</h3>
+          <ul class="activity">
+            <li>
+              <strong>Enterprise rollout</strong>
+              <span class="metric-sub">ACME onboarded 120 seats</span>
+            </li>
+            <li>
+              <strong>Experiment #24</strong>
+              <span class="metric-sub">Variant B lifted activation by 6.2%</span>
+            </li>
+            <li>
+              <strong>Incident resolved</strong>
+              <span class="metric-sub">Auth latency normalized after 12m</span>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>Pipeline</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Stage</th>
+              <th>Owner</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Northwind Labs</td>
+              <td>Proposal</td>
+              <td>R. Yates</td>
+              <td>$84k</td>
+            </tr>
+            <tr>
+              <td>Bluebird IO</td>
+              <td>Discovery</td>
+              <td>K. Agnew</td>
+              <td>$52k</td>
+            </tr>
+            <tr>
+              <td>Vista Health</td>
+              <td>Security review</td>
+              <td>M. Patel</td>
+              <td>$130k</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

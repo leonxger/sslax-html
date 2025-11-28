@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launch Page</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #05060f;
+      --panel: rgba(255, 255, 255, 0.05);
+      --ink: #e5e7eb;
+      --muted: #a5b0c4;
+      --accent: #a855f7;
+      --accent-2: #38bdf8;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Manrope', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.14), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.18), transparent 24%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 24px 18px 48px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      background: linear-gradient(120deg, rgba(168, 85, 247, 0.22), rgba(56, 189, 248, 0.22));
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 12px;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: all 120ms ease;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+      background: var(--panel);
+    }
+
+    .hero {
+      border-radius: 22px;
+      background: linear-gradient(140deg, rgba(8, 47, 73, 0.75), rgba(19, 78, 74, 0.65)),
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.25), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.28), transparent 40%),
+        #0a0f1b;
+      border: 1px solid var(--border);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #05060f;
+      border: none;
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 14px 36px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <span>Signal Studio</span>
+        <span class="badge">Beta 1.2</span>
+      </div>
+      <nav>
+        <a href="#">Overview</a>
+        <a href="#">Use cases</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Ship expressive landing pages without touching a build pipeline.</h1>
+      <p>Swap content, tune color tokens, and publish. The layout is resilient, focused on clarity, and ready for product storytelling.</p>
+      <div class="cta">
+        <button class="btn primary">Start for free</button>
+        <button class="btn">View components</button>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>Adaptive by default</h3>
+          <p>Sections scale from widescreen hero to one-column mobile without breaking rhythm.</p>
+        </article>
+        <article class="feature">
+          <h3>Performance minded</h3>
+          <p>Typography and spacing use modern clamp values so copy stays legible everywhere.</p>
+        </article>
+        <article class="feature">
+          <h3>On-brand quickly</h3>
+          <p>Swap the accent gradient once to recolor buttons, badges, and highlights across the page.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Built for fast launches</span>
+      <span>Drop in analytics and forms where you need them.</span>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "midnight-forge",
+    "name": "Midnight Forge",
+    "tone": "dark",
+    "swatch": ["#0ea5e9", "#6366f1", "#f43f5e"],
+    "cssVars": {
+      "--void": "#0d1117",
+      "--surface": "#161b22",
+      "--elevated": "#1c2128",
+      "--divider": "#30363d",
+      "--subtle-border": "#21262d",
+      "--text-primary": "#e6edf3",
+      "--text-secondary": "#8b949e",
+      "--text-tertiary": "#6e7681",
+      "--accent": "#58a6ff",
+      "--success": "#3fb950",
+      "--warning": "#d29922",
+      "--danger": "#f85149",
+      "--neutral": "#6e7681",
+      "--shadow-elevated": "0 8px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(48, 54, 61, 0.8)",
+      "--shadow-hover": "0 4px 12px rgba(0, 0, 0, 0.4)"
+    },
+    "monaco": {
+      "base": "vs-dark",
+      "inherit": true,
+      "rules": [
+        { "token": "comment", "foreground": "8b949e", "fontStyle": "italic" },
+        { "token": "keyword", "foreground": "8b5cf6", "fontStyle": "bold" },
+        { "token": "string", "foreground": "0ea5e9" },
+        { "token": "tag", "foreground": "f43f5e" },
+        { "token": "attribute.name", "foreground": "7dd3fc" },
+        { "token": "number", "foreground": "f59e0b" }
+      ],
+      "colors": {
+        "editor.background": "#0f172a",
+        "editor.foreground": "#e2e8f0",
+        "editor.lineHighlightBackground": "#1e293b80",
+        "editorCursor.foreground": "#0ea5e9",
+        "editorIndentGuide.background": "#263140",
+        "editorLineNumber.foreground": "#475569"
+      }
+    }
+  },
+  {
+    "id": "solar-flare",
+    "name": "Solar Flare",
+    "tone": "light",
+    "swatch": ["#f97316", "#fb923c", "#facc15"],
+    "cssVars": {
+      "--void": "#f5f7fb",
+      "--surface": "#ffffff",
+      "--elevated": "#f2f4fb",
+      "--divider": "#d8deeb",
+      "--subtle-border": "#e5e8f2",
+      "--text-primary": "#111827",
+      "--text-secondary": "#374151",
+      "--text-tertiary": "#4b5563",
+      "--accent": "#f97316",
+      "--success": "#16a34a",
+      "--warning": "#d97706",
+      "--danger": "#e11d48",
+      "--neutral": "#6b7280",
+      "--shadow-elevated": "0 12px 32px rgba(17, 24, 39, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04)",
+      "--shadow-hover": "0 8px 18px rgba(17, 24, 39, 0.08)"
+    },
+    "monaco": {
+      "base": "vs",
+      "inherit": true,
+      "rules": [
+        { "token": "comment", "foreground": "9ca3af", "fontStyle": "italic" },
+        { "token": "keyword", "foreground": "d97706", "fontStyle": "bold" },
+        { "token": "string", "foreground": "047857" },
+        { "token": "tag", "foreground": "ea580c" },
+        { "token": "attribute.name", "foreground": "fb923c" },
+        { "token": "number", "foreground": "2563eb" }
+      ],
+      "colors": {
+        "editor.background": "#ffffff",
+        "editor.foreground": "#111827",
+        "editor.lineHighlightBackground": "#fff7ed",
+        "editorCursor.foreground": "#f97316",
+        "editorIndentGuide.background": "#e5e7eb",
+        "editorLineNumber.foreground": "#9ca3af"
+      }
+    }
+  },
+  {
+    "id": "aurora-void",
+    "name": "Aurora Void",
+    "tone": "dark",
+    "swatch": ["#7dd3fc", "#a855f7", "#f472b6"],
+    "cssVars": {
+      "--void": "#0b0f1f",
+      "--surface": "#11162b",
+      "--elevated": "#161d37",
+      "--divider": "#242b4a",
+      "--subtle-border": "#1c2340",
+      "--text-primary": "#e9ecff",
+      "--text-secondary": "#b5c2ff",
+      "--text-tertiary": "#8493c7",
+      "--accent": "#7dd3fc",
+      "--success": "#34d399",
+      "--warning": "#f59e0b",
+      "--danger": "#f472b6",
+      "--neutral": "#94a3b8",
+      "--shadow-elevated": "0 14px 36px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(36, 43, 74, 0.7)",
+      "--shadow-hover": "0 8px 18px rgba(0, 0, 0, 0.4)"
+    },
+    "monaco": {
+      "base": "vs-dark",
+      "inherit": true,
+      "rules": [
+        { "token": "comment", "foreground": "6b7fbc", "fontStyle": "italic" },
+        { "token": "keyword", "foreground": "a855f7", "fontStyle": "bold" },
+        { "token": "string", "foreground": "7dd3fc" },
+        { "token": "tag", "foreground": "f472b6" },
+        { "token": "attribute.name", "foreground": "c084fc" },
+        { "token": "number", "foreground": "fbbf24" }
+      ],
+      "colors": {
+        "editor.background": "#0f1428",
+        "editor.foreground": "#e7e9ff",
+        "editor.lineHighlightBackground": "#1c254280",
+        "editorCursor.foreground": "#7dd3fc",
+        "editorIndentGuide.background": "#242b47",
+        "editorLineNumber.foreground": "#475178"
+      }
+    }
+  },
+  {
+    "id": "forest-mist",
+    "name": "Forest Mist",
+    "tone": "dark",
+    "swatch": ["#4ade80", "#22c55e", "#a7f3d0"],
+    "cssVars": {
+      "--void": "#0f1a14",
+      "--surface": "#15221a",
+      "--elevated": "#1c2c22",
+      "--divider": "#224434",
+      "--subtle-border": "#1b3326",
+      "--text-primary": "#e7f3ea",
+      "--text-secondary": "#b5d6c3",
+      "--text-tertiary": "#8fb4a0",
+      "--accent": "#4ade80",
+      "--success": "#34d399",
+      "--warning": "#f4c152",
+      "--danger": "#f87171",
+      "--neutral": "#9bb8a7",
+      "--shadow-elevated": "0 12px 32px rgba(7, 14, 10, 0.6), 0 0 0 1px rgba(34, 68, 52, 0.7)",
+      "--shadow-hover": "0 8px 18px rgba(7, 14, 10, 0.45)"
+    },
+    "monaco": {
+      "base": "vs-dark",
+      "inherit": true,
+      "rules": [
+        { "token": "comment", "foreground": "7fb099", "fontStyle": "italic" },
+        { "token": "keyword", "foreground": "4ade80", "fontStyle": "bold" },
+        { "token": "string", "foreground": "#befae2" },
+        { "token": "tag", "foreground": "fbbf24" },
+        { "token": "attribute.name", "foreground": "86efac" },
+        { "token": "number", "foreground": "fcd34d" }
+      ],
+      "colors": {
+        "editor.background": "#0f2016",
+        "editor.foreground": "#e9f5ec",
+        "editor.lineHighlightBackground": "#1b352580",
+        "editorCursor.foreground": "#4ade80",
+        "editorIndentGuide.background": "#254030",
+        "editorLineNumber.foreground": "#4a6b5b"
+      }
+    }
+  }
+]

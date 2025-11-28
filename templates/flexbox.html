@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Workspace</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #0c111a;
+      --panel: #0f1724;
+      --sidebar: #0a101a;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --border: rgba(148, 163, 184, 0.18);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Sora', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.08), transparent 24%), var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 32px 20px 48px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 140ms ease;
+    }
+
+    .chip.active {
+      color: var(--ink);
+      border-color: rgba(245, 158, 11, 0.5);
+      background: rgba(245, 158, 11, 0.12);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.15);
+    }
+
+    .workspace {
+      display: flex;
+      gap: 18px;
+      align-items: stretch;
+      min-height: 420px;
+    }
+
+    .sidebar {
+      flex: 0 0 260px;
+      background: var(--sidebar);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar h2,
+    .content h2 {
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .sidebar .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: all 140ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .content {
+      flex: 1;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toolbar .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--ink);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 140ms ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, #f59e0b, #fbbf24);
+      color: #0c111a;
+      border: none;
+      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.2);
+    }
+
+    .cards {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1 1 260px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 240px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .card small {
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 960px) {
+      .workspace {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 22px 14px 36px;
+      }
+
+      .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">Flex Workspace</div>
+      <div class="filters">
+        <button class="chip active">All streams</button>
+        <button class="chip">In review</button>
+        <button class="chip">Shipped</button>
+        <button class="chip">Blocked</button>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <div class="stack">
+          <p>Use this flexible column for navigation, filters, or a timeline. It will stack under the content on small screens.</p>
+        </div>
+        <div class="nav">
+          <a href="#">Overview</a>
+          <a href="#">Tasks</a>
+          <a href="#">Notes</a>
+          <a href="#">Archive</a>
+        </div>
+      </aside>
+
+      <div class="content">
+        <div class="toolbar">
+          <h2>Main content</h2>
+          <div class="actions">
+            <button class="btn">Add block</button>
+            <button class="btn primary">Publish</button>
+          </div>
+        </div>
+        <p class="stack">This section uses a flexible row that wraps neatly. Cards below will grow to fill available space and drop to new lines when needed.</p>
+
+        <div class="cards">
+          <article class="card">
+            <small>01</small>
+            <h3>Flexible layout</h3>
+            <p class="stack">Define widths with flex-basis, let items wrap, and keep gaps consistent with a single rule.</p>
+          </article>
+          <article class="card">
+            <small>02</small>
+            <h3>Sticky content</h3>
+            <p class="stack">Swap the sidebar content for sticky controls or filters by adding <code>position: sticky</code> and a top offset.</p>
+          </article>
+          <article class="card">
+            <small>03</small>
+            <h3>Mobile friendly</h3>
+            <p class="stack">At 960px the workspace stacks into a tidy column, preserving the rhythm without changing markup.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

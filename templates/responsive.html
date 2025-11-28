@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Starter</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #0b1221;
+      --panel: #0d1528;
+      --ink: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a855f7;
+      --border: rgba(226, 232, 240, 0.08);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Manrope', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15), transparent 24%),
+        radial-gradient(circle at 90% 10%, rgba(168, 85, 247, 0.16), transparent 22%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: clamp(20px, 4vw, 36px) clamp(14px, 4vw, 24px) clamp(32px, 6vw, 56px);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: all 140ms ease;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+      background: rgba(226, 232, 240, 0.08);
+    }
+
+    .pill {
+      background: linear-gradient(120deg, rgba(56, 189, 248, 0.16), rgba(168, 85, 247, 0.18));
+      color: var(--accent);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+    }
+
+    main {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(22px, 3vw, 32px);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: clamp(18px, 3vw, 26px);
+      align-items: center;
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      align-content: center;
+      min-height: 240px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: rgba(226, 232, 240, 0.06);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      border: none;
+      color: #0b1221;
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.24);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-media {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.25));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border-radius: 12px;
+      border: 1px dashed rgba(226, 232, 240, 0.2);
+      pointer-events: none;
+    }
+
+    .hero-media span {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(226, 232, 240, 0.8);
+    }
+
+    .feature-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.12);
+    }
+
+    @media (max-width: 960px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 14px 36px;
+      }
+
+      main {
+        padding: 18px;
+        gap: 14px;
+      }
+
+      .pill {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="pill">Responsive scaffold</div>
+      <nav>
+        <a href="#">Overview</a>
+        <a href="#">Playbook</a>
+        <a href="#">Components</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Design layouts that flex gracefully across every breakpoint.</h1>
+        <p>Drop in your own copy and components. The layout shifts between columns and a single stack without awkward gaps or overlaps.</p>
+        <div class="cta">
+          <button class="btn primary">Launch prototype</button>
+          <button class="btn">See layout tokens</button>
+        </div>
+      </section>
+
+      <div class="hero-media">
+        <span>Responsive canvas</span>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="badge">Auto-fit grid</div>
+          <h3>Cards resize without awkward gaps</h3>
+          <p>The template uses an auto-fit grid with a sensible min width, so content snaps into neat columns automatically.</p>
+        </article>
+        <article class="feature">
+          <div class="badge">Fluid typography</div>
+          <h3>Clamp keeps headings in range</h3>
+          <p>Heading sizes clamp between mobile and desktop values to avoid huge jumps and maintain rhythm.</p>
+        </article>
+        <article class="feature">
+          <div class="badge">Mobile-ready</div>
+          <h3>Navigation stacks cleanly</h3>
+          <p>Navigation links wrap without breaking alignment, and hero CTA buttons stay thumb-friendly on small screens.</p>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

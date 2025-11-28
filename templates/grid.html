@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #050816;
+      --panel: #0b1022;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #22d3ee;
+      --border: rgba(148, 163, 184, 0.16);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.1), transparent 20%),
+        radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.12), transparent 20%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 32px 18px 48px;
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero {
+      grid-column: span 12;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(99, 102, 241, 0.2));
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(229, 231, 235, 0.25);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .stat {
+      grid-column: span 3;
+    }
+
+    .stat small {
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .stat .value {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .stat .hint {
+      color: var(--muted);
+    }
+
+    .wide {
+      grid-column: span 8;
+    }
+
+    .tall {
+      grid-column: span 4;
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tagline {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .stat {
+        grid-column: span 3;
+      }
+
+      .wide {
+        grid-column: span 6;
+      }
+
+      .tall {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 22px 14px 36px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      .hero {
+        grid-column: span 1;
+      }
+
+      .stat,
+      .wide,
+      .tall {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid">
+    <header class="hero">
+      <span class="tagline">Twelve-column grid</span>
+      <h1>Map stories, dashboards, or galleries with intentional spans.</h1>
+      <p>Adjust the column spans below to explore how the grid collapses across breakpoints. Cards maintain rhythm while the layout adapts.</p>
+    </header>
+
+    <article class="card stat">
+      <small>Signal</small>
+      <span class="value">98%</span>
+      <span class="hint">Delivery health past 7 days</span>
+    </article>
+    <article class="card stat">
+      <small>Velocity</small>
+      <span class="value">142</span>
+      <span class="hint">Tasks completed this cycle</span>
+    </article>
+    <article class="card stat">
+      <small>Design time</small>
+      <span class="value">26h</span>
+      <span class="hint">Average per epic</span>
+    </article>
+    <article class="card stat">
+      <small>Confidence</small>
+      <span class="value">A-</span>
+      <span class="hint">Forecast rating</span>
+    </article>
+
+    <section class="card wide">
+      <h3>Canvas</h3>
+      <ul>
+        <li>Use <code>grid-template-columns: repeat(12, minmax(0, 1fr))</code> to establish a predictable system.</li>
+        <li>Assign spans with <code>grid-column: span x</code> on children to choreograph emphasis.</li>
+        <li>Drop to 6 columns at 900px and a single column on phones for simpler reading.</li>
+      </ul>
+    </section>
+
+    <section class="card tall">
+      <h3>Quick wins</h3>
+      <ul>
+        <li>Convert to a masonry-like layout by letting row heights be auto.</li>
+        <li>Replace cards with images to turn this into a gallery.</li>
+        <li>Wire charts into the wide slot for dashboards.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Suite</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #0f172a;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #f97316;
+      --border: rgba(226, 232, 240, 0.16);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(249, 115, 22, 0.1), transparent 25%),
+        radial-gradient(circle at 90% 0%, rgba(59, 130, 246, 0.1), transparent 24%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 36px 16px 48px;
+    }
+
+    .card {
+      width: min(960px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 18px;
+    }
+
+    h1 {
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .lede {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--ink);
+      padding: 12px;
+      font-size: 15px;
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(249, 115, 22, 0.65);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    button {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    button.primary {
+      background: linear-gradient(120deg, var(--accent), #fb923c);
+      border: none;
+      color: #0b1020;
+      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.25);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div>
+      <h1>Project intake</h1>
+      <p class="lede">Collect the essentials quickly. Swap or expand fields as needed—layout and focus states are already tuned.</p>
+    </div>
+
+    <form>
+      <div class="grid">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Lena Rivers">
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role" name="role">
+            <option>Product</option>
+            <option>Engineering</option>
+            <option>Design</option>
+            <option>Operations</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="timeline">Timeline</label>
+          <input type="text" id="timeline" name="timeline" placeholder="e.g. Q2 launch">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Priority</label>
+        <div class="row">
+          <span class="tag">Exploratory</span>
+          <span class="tag">Committed</span>
+          <span class="tag">Critical</span>
+        </div>
+        <p class="helper">Pick the option that matches urgency. Replace with radios if you prefer.</p>
+      </div>
+
+      <div class="field">
+        <label for="message">Goals & constraints</label>
+        <textarea id="message" name="message" placeholder="Describe what success looks like and any constraints."></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="button">Save draft</button>
+        <button class="primary" type="submit">Submit request</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

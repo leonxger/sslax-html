@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Basic HTML5 starter demonstrating common elements.">
+  <title>Basic HTML5 Starter</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f5f5f7;
+      color: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem clamp(1.25rem, 2vw, 3rem) 3rem;
+      background: #f5f5f7;
+    }
+
+    main,
+    header,
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2rem, 3vw, 2.5rem);
+    }
+
+    p {
+      margin: 0 0 1rem;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+      font-size: 1.25rem;
+      color: #0f172a;
+    }
+
+    footer {
+      color: #64748b;
+      font-size: 0.85rem;
+      text-align: center;
+      padding-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>HTML Starter</h1>
+    <p>Use this minimal template to launch accessible, semantic markup quickly.</p>
+  </header>
+
+  <main>
+    <section id="structure">
+      <h2>Structure</h2>
+      <p>
+        Keep the HTML hierarchy clear: headings describe sections, paragraphs hold the body text, and
+        landmarks like <code>&lt;main&gt;</code> and <code>&lt;section&gt;</code> make navigation easier.
+      </p>
+    </section>
+
+    <section id="form">
+      <h2>Form basics</h2>
+      <p>
+        Pair every <code>&lt;label&gt;</code> with an input by matching their <code>for</code>/<code>id</code> values.
+        Use <code>button type="submit"</code> to let browsers handle submission behavior.
+      </p>
+      <form>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="hello@example.com" required>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 · Simplify this template to match your project.</small>
+  </footer>
+  <script>
+    console.log("I'm working!");
+  </script>
+</body>
+
+</html>

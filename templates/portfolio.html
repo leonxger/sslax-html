@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Grid</title>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    :root {
+      --bg: #0a0c14;
+      --panel: #0f1322;
+      --ink: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.08), transparent 24%),
+        radial-gradient(circle at 80% 0%, rgba(94, 234, 212, 0.12), transparent 20%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 30px 18px 50px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header {
+      display: grid;
+      gap: 8px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 40px);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 120ms ease;
+      font-weight: 600;
+    }
+
+    .chip.active {
+      color: var(--ink);
+      border-color: rgba(34, 197, 94, 0.4);
+      background: rgba(34, 197, 94, 0.14);
+      box-shadow: 0 10px 22px rgba(34, 197, 94, 0.18);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .thumb {
+      height: 140px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(94, 234, 212, 0.25));
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb::after {
+      content: 'Preview';
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(229, 231, 235, 0.8);
+      letter-spacing: 0.08em;
+    }
+
+    .title {
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 22px 14px 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <h1>Portfolio grid</h1>
+      <p>Showcase projects with quick filters. Replace preview blocks with real thumbnails or embedded media.</p>
+      <div class="filters">
+        <button class="chip active">All</button>
+        <button class="chip">Product</button>
+        <button class="chip">Web</button>
+        <button class="chip">Motion</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="title">System dashboard</div>
+        <p>A real-time control surface with live metrics and operator actions.</p>
+        <div class="tags">
+          <span class="tag">Dashboard</span>
+          <span class="tag">Realtime</span>
+          <span class="tag">Team</span>
+        </div>
+        <a class="cta" href="#">View case study →</a>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="title">Guided onboarding</div>
+        <p>Multi-step onboarding that adapts to user context and device.</p>
+        <div class="tags">
+          <span class="tag">Product</span>
+          <span class="tag">Flows</span>
+        </div>
+        <a class="cta" href="#">View prototype →</a>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="title">Narrative report</div>
+        <p>Data storytelling with embedded visuals, footnotes, and export-ready layout.</p>
+        <div class="tags">
+          <span class="tag">Story</span>
+          <span class="tag">Analytics</span>
+        </div>
+        <a class="cta" href="#">Read summary →</a>
+      </article>
+    </section>
+  </div>
+</body>
+
+</html>
