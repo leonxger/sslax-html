@@ -156,6 +156,7 @@
     applyTheme(state.settings.theme, { skipEditor: true, skipAnimation: true, persist: false });
     setupEventListeners();
     applyLayout();
+    setupTooltips();
     setupToolbarScrollHint();
     setupResponsiveLayoutWatcher();
     if (els.previewIframe) {
@@ -595,6 +596,69 @@
     } else {
       mobileQuery.addListener(handler);
     }
+  }
+
+  function setupTooltips() {
+    let tooltip = document.querySelector('.js-tooltip');
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.className = 'js-tooltip';
+      document.body.appendChild(tooltip);
+    }
+
+    let activeTarget = null;
+
+    const updatePosition = () => {
+      if (!activeTarget || !tooltip.classList.contains('visible')) return;
+      const rect = activeTarget.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+
+      let top = rect.top - tooltipRect.height - 8;
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+
+      if (activeTarget.classList.contains('tooltip-left')) {
+        top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
+        left = rect.left - tooltipRect.width - 8;
+      }
+
+      if (left < 4) left = 4;
+      if (left + tooltipRect.width > window.innerWidth - 4) left = window.innerWidth - tooltipRect.width - 4;
+      if (top < 4) top = rect.bottom + 8;
+
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
+    };
+
+    document.addEventListener('mouseover', e => {
+      const target = e.target.closest('[data-tooltip]');
+      if (target && target !== activeTarget) {
+        activeTarget = target;
+        const text = target.getAttribute('data-tooltip');
+        if (text) {
+          tooltip.textContent = text;
+          tooltip.classList.add('visible');
+          updatePosition();
+        }
+      }
+    });
+
+    document.addEventListener('mouseout', e => {
+      const target = e.target.closest('[data-tooltip]');
+      if (target && target === activeTarget) {
+        if (e.relatedTarget && target.contains(e.relatedTarget)) return;
+
+        activeTarget = null;
+        tooltip.classList.remove('visible');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      if (activeTarget && tooltip.classList.contains('visible')) updatePosition();
+    }, { capture: true, passive: true });
+
+    window.addEventListener('resize', () => {
+      if (activeTarget && tooltip.classList.contains('visible')) updatePosition();
+    }, { passive: true });
   }
 
   function setupToolbarScrollHint() {

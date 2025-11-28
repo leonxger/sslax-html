@@ -511,13 +511,9 @@ body {
     background: color-mix(in srgb, var(--accent) 16%, var(--void));
 }
 
-.icon-btn[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 8px;
+.js-tooltip {
+    position: fixed;
+    z-index: 10000;
     background: var(--elevated);
     border: 1px solid var(--divider);
     padding: 6px 10px;
@@ -525,43 +521,18 @@ body {
     font-size: 11px;
     white-space: nowrap;
     color: var(--text-primary);
-    z-index: 100;
     box-shadow: var(--shadow-elevated);
     pointer-events: none;
-    animation: tooltipFade 150ms ease-out;
+    opacity: 0;
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
+    transform: translateY(-4px);
+    top: 0;
+    left: 0;
 }
 
-.icon-btn.tooltip-left[data-tooltip]:hover::after {
-    left: auto;
-    right: calc(100% + 8px);
-    top: 50%;
-    margin-top: 0;
-    transform: translateY(-50%);
-    animation: tooltipFadeSide 150ms ease-out;
-}
-
-@keyframes tooltipFade {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-4px)
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0)
-    }
-}
-
-@keyframes tooltipFadeSide {
-    from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(6px)
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0)
-    }
+.js-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .workspace {
@@ -784,11 +755,13 @@ body {
 }
 
 .monaco-editor .context-view .monaco-menu {
+    background: var(--elevated);
     background: color-mix(in srgb, var(--surface) 92%, var(--void) 8%);
     border: 1px solid var(--divider);
     box-shadow: var(--shadow-elevated);
     border-radius: 10px;
     overflow: hidden;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -812,7 +785,30 @@ body {
 .monaco-editor .context-view .monaco-menu .action-item.focused .action-label,
 .monaco-editor .context-view .monaco-menu .action-item:hover .action-label {
     color: var(--text-primary);
+    background: rgba(88, 166, 255, 0.14);
     background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* Force Safari/iOS to paint the Monaco context menu background */
+.context-view.monaco-menu-container,
+.context-view.monaco-menu-container .monaco-menu,
+.context-view .monaco-menu,
+.context-view .monaco-menu .monaco-scrollable-element {
+    background-color: rgba(28, 33, 40, 0.96) !important;
+    border: 1px solid var(--divider) !important;
+    box-shadow: var(--shadow-elevated) !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+
+    .context-view.monaco-menu-container,
+    .context-view.monaco-menu-container .monaco-menu,
+    .context-view .monaco-menu {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
 }
 
 .divider-handle {
