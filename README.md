@@ -2,6 +2,8 @@
 
 Fast, good-looking, open source HTML editor built to run entirely in your browser. Everything ships locally (≈11 MB), so after the first load your browser caches the static assets and you can keep working offline. No telemetry, no ads, nothing stored beyond your own local cache for settings and the current document.
 
+[TRY HERE](https://leonxger.github.io/sslax-html/)
+
 ![Main editor and preview](ui_screenshots/screenshot_main.png)
 
 ## Why it exists
